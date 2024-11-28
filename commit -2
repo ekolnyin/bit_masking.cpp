@@ -5,7 +5,7 @@ unsigned char clearBit(unsigned char byte, int bitPosition);
 unsigned char toggleBit(unsigned char byte, int bitPosition);
 void displayByte(const char* message, unsigned char byte);
 
-int main() {
+int main(void) {
     // Define the starting byte with a value of 0x55 (01010101 in binary)
     unsigned char dataByte = 0x55;
 
