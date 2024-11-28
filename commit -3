@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+// Function prototypes
+unsigned char clearBit(unsigned char byte, int bitPosition);
+unsigned char toggleBit(unsigned char byte, int bitPosition);
+void displayByte(const char* message, unsigned char byte);
+
+int main(void) {
+    // Define the starting byte with a value of 0x55 (01010101 in binary)
+    unsigned char dataByte = 0x55;
+
+    // Display the initial value of the byte
+    displayByte("Initial data byte", dataByte);
+
+    // Clear the 5th bit (bit position 4, counting from 0)
+    dataByte = clearBit(dataByte, 4);
+    displayByte("After clearing the 5th bit", dataByte);
+
+    // Toggle the 7th bit (bit position 6, counting from 0)
+    dataByte = toggleBit(dataByte, 6);
+    displayByte("After toggling the 7th bit", dataByte);
+
+    return 0;
+}
+
+// Function to clear a specific bit in a byte
+unsigned char clearBit(unsigned char byte, int bitPosition) {
+    return byte & ~(1 << bitPosition);
+}
+
+// Function to toggle a specific bit in a byte
+unsigned char toggleBit(unsigned char byte, int bitPosition) {
+    /*
+     Toggling a bit flips its value:
+     - If it's 1, it becomes 0.
+     - If it's 0, it becomes 1.
+     To do this:
+     - We use XOR (^) with a mask where only the target bit is 1.
+     - XOR flips the target bit while leaving other bits unchanged.
+    */
+    return byte ^ (1 << bitPosition);
+}
+
+// Function to display the value of a byte
+void displayByte(const char* message, unsigned char byte) {
+    printf("%s: 0x%02X (", message, byte);
+    for (int i = 7; i >= 0; i--) {
+        printf("%d", (byte >> i) & 1);
+    }
+    printf(")\n");
+}
