@@ -1,0 +1,36 @@
+/*
+This commit sets up the foundation of the program. 
+It defines the structure, prototypes the necessary functions, 
+and implements a function to display the byte in a readable format.
+*/
+#include <stdio.h>
+
+// Function prototypes for operations we'll perform later
+unsigned char clearBit(unsigned char byte, int bitPosition);
+unsigned char toggleBit(unsigned char byte, int bitPosition);
+void displayByte(const char* message, unsigned char byte);
+
+int main(void) {
+    // Define the starting byte with a value of 0x55 (01010101 in binary)
+    unsigned char dataByte = 0x55;
+
+    // Display the initial value of the byte in both hexadecimal and binary formats
+    displayByte("Initial data byte", dataByte);
+
+    return 0;
+}
+
+// Function to display the value of a byte
+void displayByte(const char* message, unsigned char byte) {
+    /*
+     This function prints:
+     1. A message describing the byte's purpose (e.g., "Initial data byte").
+     2. The byte's value in hexadecimal (e.g., 0x55).
+     3. The byte's value in binary format (e.g., 01010101).
+    */
+    printf("%s: 0x%02X (", message, byte);
+    for (int i = 7; i >= 0; i--) {  // Loop from bit 7 to bit 0
+        printf("%d", (byte >> i) & 1);  // Extract and print each bit
+    }
+    printf(")\n");  // Add a closing parenthesis and newline
+}
