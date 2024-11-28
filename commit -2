@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Function prototypes
+// The following are Function prototypes
 unsigned char clearBit(unsigned char byte, int bitPosition);
 unsigned char toggleBit(unsigned char byte, int bitPosition);
 void displayByte(const char* message, unsigned char byte);
